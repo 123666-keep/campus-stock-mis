@@ -9,7 +9,10 @@ st.markdown('''<style>
 [data-testid="stMain"] {overflow:hidden}
 iframe {display:block;border:0;width:100%;height:100dvh}
 </style>''', unsafe_allow_html=True)
-page = Path(__file__).resolve().parent / 'cloud' / 'web' / 'index.html'
+root = Path(__file__).resolve().parent
+page = root / 'cloud' / 'web' / 'index.html'
+if not page.is_file():
+    page = root / 'index.html'
 if not page.is_file():
     st.error('缺少云端页面，请先运行 python cloud/build_cloud.py 并上传 cloud/web/index.html。')
     st.stop()
